@@ -66,9 +66,11 @@ ORDER BY
 
 
 -- 2 ùàéìúåú DELETE
--- îçé÷ú ëì ä÷åøñéí ùìà îùåéëéí ìùåí ÷áåöä:
-DELETE FROM Courses
-WHERE id_Course NOT IN (SELECT DISTINCT id_Course FROM Course_Group);
+-- מחיקת המערכת חוגים אם יש חוג שיש לו מערכת שכבר קיימת:
+Delete from group_in_schedulle g1
+where 1 < (select count(g2.id_schedule)
+           from group_in_schedulle g2
+           where g1.id_schedule = g2.id_schedule);
 
 -- îçé÷ú ëì äîåøéí ùìà î÷åùøéí ìùåí ÷åøñ:
 DELETE FROM Teachers
