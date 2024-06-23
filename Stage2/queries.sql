@@ -1,6 +1,6 @@
--- 4 ωΰιμϊεϊ SELECT
+-- 4 ΓΉΓ Γ©Γ¬ΓΊΓ¥ΓΊ SELECT
 
--- ωΰιμϊΰ δξφιβδ ΰϊ ξρτψ διμγιν αλμ χαεφϊ χεψρ ςν ξιεο μτι ξρτψ διμγιν αργψ ιεψγ
+-- ΓΉΓ Γ©Γ¬ΓΊΓ  Γ¤Γ®Γ¶Γ©ΓΆΓ¤ Γ ΓΊ Γ®Γ±Γ΄ΓΈ Γ¤Γ©Γ¬Γ£Γ©Γ­ Γ΅Γ«Γ¬ Γ·Γ΅Γ¥Γ¶ΓΊ Γ·Γ¥ΓΈΓ± Γ²Γ­ Γ®Γ©Γ¥Γ― Γ¬Γ΄Γ© Γ®Γ±Γ΄ΓΈ Γ¤Γ©Γ¬Γ£Γ©Γ­ Γ΅Γ±Γ£ΓΈ Γ©Γ¥ΓΈΓ£
 SELECT CG.id_Course, C.Course_Name, COUNT(KG.id_Kid) AS NumberOfKids
 FROM Course_Group as CG
 JOIN Kid_In_Group as KG ON CG.Id_Group = KG.Id_Group
@@ -8,18 +8,17 @@ JOIN Courses as C ON CG.id_Course = C.id_Course
 GROUP BY CG.id_Course, C.Course_Name
 ORDER BY NumberOfKids DESC;
 
--- ωΰιμϊΰ δξφιβδ ΰϊ ξρτψ διμγιν αλμ χαεφϊ χεψρ μτι ιεν εωςδ:
+-- ΓΉΓ Γ©Γ¬ΓΊΓ  Γ¤Γ®Γ¶Γ©ΓΆΓ¤ Γ ΓΊ Γ®Γ±Γ΄ΓΈ Γ¤Γ©Γ¬Γ£Γ©Γ­ Γ΅Γ«Γ¬ Γ·Γ΅Γ¥Γ¶ΓΊ Γ·Γ¥ΓΈΓ± Γ¬Γ΄Γ© Γ©Γ¥Γ­ Γ¥ΓΉΓ²Γ¤:
 SELECT S.s_day, S.s_hour, CG.id_Course, C.Course_Name, COUNT(KG.id_Kid) AS NumberOfKids
 FROM group_In_Schedulle GS
-JOIN Schedule S ON GS.id_Schedule = S.id_Schedule
-JOIN Course_Group CG ON GS.Id_Group = CG.Id_Group
-JOIN Courses C ON CG.id_Course = C.id_Course
-JOIN Kid_In_Group KG ON CG.Id_Group = KG.Id_Group
+LEFT JOIN Schedule S ON GS.id_Schedule = S.id_Schedule
+LEFT JOIN Course_Group CG ON GS.Id_Group = CG.Id_Group
+LEFT JOIN Courses C ON CG.id_Course = C.id_Course
+LEFT JOIN Kid_In_Group KG ON CG.Id_Group = KG.Id_Group
 GROUP BY S.s_day, S.s_hour, CG.id_Course, C.Course_Name
 ORDER BY S.s_day, S.s_hour;
 
-
--- ωΰιμϊΰ δξφιβδ ΰϊ τψθι λμ δξεψιν ςν ξρτψ δχεψριν ωδν ξμξγιν εξρτψ δϊμξιγιν αλμ χεψρ:
+-- ΓΉΓ Γ©Γ¬ΓΊΓ  Γ¤Γ®Γ¶Γ©ΓΆΓ¤ Γ ΓΊ Γ΄ΓΈΓ¨Γ© Γ«Γ¬ Γ¤Γ®Γ¥ΓΈΓ©Γ­ Γ²Γ­ Γ®Γ±Γ΄ΓΈ Γ¤Γ·Γ¥ΓΈΓ±Γ©Γ­ ΓΉΓ¤Γ­ Γ®Γ¬Γ®Γ£Γ©Γ­ Γ¥Γ®Γ±Γ΄ΓΈ Γ¤ΓΊΓ¬Γ®Γ©Γ£Γ©Γ­ Γ΅Γ«Γ¬ Γ·Γ¥ΓΈΓ±:
 SELECT 
     T.id_Teacher, 
     T.t_name, 
@@ -48,7 +47,7 @@ ORDER BY
     C.Course_Name;
 
 
--- ωΰιμϊΰ δξφιβδ ΰϊ δϊωμεξιν δΰηψεπιν (μτι ϊΰψικ) ωαεφςε ςαεψ λμμγ:
+-- ΓΉΓ Γ©Γ¬ΓΊΓ  Γ¤Γ®Γ¶Γ©ΓΆΓ¤ Γ ΓΊ Γ¤ΓΊΓΉΓ¬Γ¥Γ®Γ©Γ­ Γ¤Γ Γ§ΓΈΓ¥Γ°Γ©Γ­ (Γ¬Γ΄Γ© ΓΊΓ ΓΈΓ©Γª) ΓΉΓ΅Γ¥Γ¶Γ²Γ¥ Γ²Γ΅Γ¥ΓΈ Γ«Γ¬Γ¬Γ£:
 SELECT 
     K.k_name, 
     P.id_Payment, 
@@ -66,18 +65,18 @@ ORDER BY
     Last_Payment_Date DESC;
 
 
--- 2 ωΰιμϊεϊ DELETE
--- ξηιχϊ λμ δχεψριν ωμΰ ξωειλιν μωεν χαεφδ:
+-- 2 ΓΉΓ Γ©Γ¬ΓΊΓ¥ΓΊ DELETE
+-- Γ®Γ§Γ©Γ·ΓΊ Γ«Γ¬ Γ¤Γ·Γ¥ΓΈΓ±Γ©Γ­ ΓΉΓ¬Γ  Γ®ΓΉΓ¥Γ©Γ«Γ©Γ­ Γ¬ΓΉΓ¥Γ­ Γ·Γ΅Γ¥Γ¶Γ¤:
 DELETE FROM Courses
 WHERE id_Course NOT IN (SELECT DISTINCT id_Course FROM Course_Group);
 
--- ξηιχϊ λμ δξεψιν ωμΰ ξχεωψιν μωεν χεψρ:
+-- Γ®Γ§Γ©Γ·ΓΊ Γ«Γ¬ Γ¤Γ®Γ¥ΓΈΓ©Γ­ ΓΉΓ¬Γ  Γ®Γ·Γ¥ΓΉΓΈΓ©Γ­ Γ¬ΓΉΓ¥Γ­ Γ·Γ¥ΓΈΓ±:
 DELETE FROM Teachers
 WHERE id_Teacher NOT IN (SELECT DISTINCT id_Teacher FROM Course_Has_Teacher);
 
 
--- 2 ωΰιμϊεϊ UPDATE
--- ςγλεο δξηιψ ωμ λμ δχεψριν ωξωειλιν μχαεφδ ςν ιεϊψ ξ-10 ιμγιν α-5%:
+-- 2 ΓΉΓ Γ©Γ¬ΓΊΓ¥ΓΊ UPDATE
+-- Γ²Γ£Γ«Γ¥Γ― Γ¤Γ®Γ§Γ©ΓΈ ΓΉΓ¬ Γ«Γ¬ Γ¤Γ·Γ¥ΓΈΓ±Γ©Γ­ ΓΉΓ®ΓΉΓ¥Γ©Γ«Γ©Γ­ Γ¬Γ·Γ΅Γ¥Γ¶Γ¤ Γ²Γ­ Γ©Γ¥ΓΊΓΈ Γ®-10 Γ©Γ¬Γ£Γ©Γ­ Γ΅-5%:
 UPDATE Courses
 SET price = price * 1.05
 WHERE id_Course IN (
@@ -88,7 +87,7 @@ WHERE id_Course IN (
     HAVING COUNT(KG.id_Kid) > 10
 );
 
--- ωΰιμϊδ ωξεριτδ δπηδ μλμ δχεψριν ωΰιο μδν ϊμξιγιν ςγιο.
+-- ΓΉΓ Γ©Γ¬ΓΊΓ¤ ΓΉΓ®Γ¥Γ±Γ©Γ΄Γ¤ Γ¤Γ°Γ§Γ¤ Γ¬Γ«Γ¬ Γ¤Γ·Γ¥ΓΈΓ±Γ©Γ­ ΓΉΓ Γ©Γ― Γ¬Γ¤Γ­ ΓΊΓ¬Γ®Γ©Γ£Γ©Γ­ Γ²Γ£Γ©Γ―.
 UPDATE Courses
 SET price = price * 0.85
 WHERE id_Course IN (
