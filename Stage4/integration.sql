@@ -70,16 +70,16 @@ CREATE TABLE classes
 );
 
 -- Update relations
-ALTER TABLE Courses ADD COLUMN idSubject NUMERIC(5) NOT NULL;
+ALTER TABLE Courses ADD idSubject NUMERIC(5);
 ALTER TABLE Courses ADD FOREIGN KEY (idSubject) REFERENCES Subject(idSubject);
 
-ALTER TABLE Rooms ADD COLUMN capacity INT NOT NULL;
+ALTER TABLE Rooms ADD capacity INT NOT NULL;
 
 -- Create new relationships
-ALTER TABLE classes ADD COLUMN grade_id NUMERIC(5);
+ALTER TABLE classes ADD grade_id NUMERIC(5);
 ALTER TABLE classes ADD FOREIGN KEY (grade_id) REFERENCES Grade(grade_id);
 
-ALTER TABLE circle ADD COLUMN idKid NUMERIC(5);
+ALTER TABLE circle ADD idKid NUMERIC(5);
 ALTER TABLE circle ADD FOREIGN KEY (idKid) REFERENCES Kids(idKid);
 
 -- Create linking tables
