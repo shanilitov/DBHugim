@@ -1,3 +1,4 @@
+--  מבט ראשון מנקודת מבט של המקור(חוגים) שמקבצת לקבוצה את מס הילדים בכל קבוצה את שם המורה ואת היום והשעה
 CREATE OR REPLACE VIEW GROUPDETAILS AS
 SELECT
     g.idGroup AS GroupID,
